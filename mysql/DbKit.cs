@@ -1,17 +1,9 @@
 using System;
-
-// using System.Collections.Generic;
-// using System.Linq;
-// using System.Web;
-
 using System.Reflection;      // must 
-
 using System.Configuration;   // must
-
-using System.Data;
-using System.Data.SqlClient;  // for 'mssql'
-
-using MySql.Data.MySqlClient; // for 'mysql'
+using System.Data;            // must
+using System.Data.SqlClient;  // must
+using MySql.Data.MySqlClient; // must
 
 namespace DbKit
 {
