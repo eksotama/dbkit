@@ -45,7 +45,7 @@ This is a specialized kit for ADO.NET development, has supported the common data
 
 该接口定义了6个接口方法：
 
-- ### `Execute(string executeType, string cmdText, params object[] cmdParams)`：
+- ### `Execute(string executeType, string cmdText, params object[] cmdParams)`
   
   用来执行执行SQL语句（支持带安全参数）并返回执行的结果，传入三种参数：
 
@@ -55,8 +55,10 @@ This is a specialized kit for ADO.NET development, has supported the common data
 
   - `cmdParams`：表示命令参数对象的可变数组，SQL语句带安全参数时传入。
 
-- ### `Execute(string executeType, string cmdText, CommandType cmdType, params object[] cmdParams)`：
+- ### `Execute(string executeType, string cmdText, CommandType cmdType, params object[] cmdParams)`
 
   上一个 Execute 方法的重载，支持执行存储过程，增加一个新参数：
 
-  - `cmdType`：命令类型，有3个值：`CommandType.StoredProcedure`
+  - `cmdType`：命令类型，有3个值：`CommandType.StoredProcedure`（存储过程）、`CommandType.Text`（SQL语句）、`TableDirect`（数据表）,`此方法支持前两个类型`，[参考文档](https://msdn.microsoft.com/zh-cn/library/system.data.commandtype(VS.80).aspx)。
+
+ > Loading... :smile:
