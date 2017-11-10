@@ -4,7 +4,7 @@ using System.Data.SqlClient;  // must
 using System.Reflection;      // must 
 using System.Configuration;   // must
 
-namespace DbKitS
+namespace DbKit
 {
     // 抽象工厂模式（Abstract factory pattern） + 反射（Reflection）
     //
@@ -26,11 +26,11 @@ namespace DbKitS
         //
         //           if (className.Equals("MSSQL", StringComparison.CurrentCultureIgnoreCase)) // 忽略大小写
         //           {
-        //               value = "DbKitX.MsSqlConnector"; // for mssql
+        //               value = "DbKit.MsSqlConnector"; // for mssql
         //           }
         //           else (className.Equals("MYSQL", StringComparison.CurrentCultureIgnoreCase))
         //           {
-        //               value = "DbKitX.MySqlConnector"; // for mysql
+        //               value = "DbKit.MySqlConnector"; // for mysql
         //           }
         //       }
         //       get
@@ -39,7 +39,7 @@ namespace DbKitS
         //       }
         //   }
         //
-        private static readonly string ConnectorClassName = "DbKitS.MsSqlConnector";
+        private static readonly string ConnectorClassName = "DbKit.MsSqlConnector";
 
         // Summary:
         //   获取当前程序集全名，只读
