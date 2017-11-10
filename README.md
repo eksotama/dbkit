@@ -1,6 +1,6 @@
 # DbKit
 
-:fire: ADO.NET数据库开发连接辅助工具。
+ADO.NET数据库开发连接辅助工具。
 
 A helpful database kit for ADO.NET development.
 
