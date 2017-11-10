@@ -37,8 +37,26 @@ This is a specialized kit for ADO.NET development, has supported the common data
   
   静态公共方法，用来获取一个对应用户数据库类型的连接器对象，目前支持最多传入一个参数：
 
-  - `dbConStrname`：可变参数数组，表示在 Web.config 中的连接字符串名
+  - `dbConStrname`：可变参数数组，表示在 Web.config 中的连接字符串名。
+
+  - `返回值`：连接器（Connector）。
   
 ### `Connector`接口
 
-> loading...
+该接口定义了6个接口方法：
+
+- ### `Execute(string executeType, string cmdText, params object[] cmdParams)`：
+  
+  用来执行执行SQL语句（支持带安全参数）并返回执行的结果，传入三种参数：
+
+  - `executeType`：表示执行类型，有3个值：`Non`、`Reader`、`Scalar`、`Xml`，即对应执行 ExecuteNonQuery、ExecuteReader、ExecuteScalar、ExecuteXmlReader 方法，[参考文档](https://msdn.microsoft.com/zh-cn/library/system.data.sqlclient.sqlcommand.aspx)。
+
+  - `cmdText`：表示命令文本，可以是SQL语句或存储过程，但`此方法只支持SQL语句的执行`。
+
+  - `cmdParams`：表示命令参数对象的可变数组，SQL语句带安全参数时传入。
+
+- ### `Execute(string executeType, string cmdText, CommandType cmdType, params object[] cmdParams)`：
+
+  上一个 Execute 方法的重载，支持执行存储过程，增加一个新参数：
+
+  - `cmdType`：命令类型，有3个值：`CommandType.StoredProcedure`
