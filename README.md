@@ -9,3 +9,7 @@ A database kit for ADO.NET development.
 - `mssql`：存放连接Microsoft SQL Server的工具类。
 
 - `mysql`：存放连接MySQL的工具类。
+
+## 版本
+
+- 1.0.1
