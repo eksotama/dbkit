@@ -25,7 +25,7 @@ This is a specialized kit for ADO.NET development, has supported the common data
 
 ## 用法 Usage
 
-### `DbHelper`类
+### DbHelper类
 
 该类只定义了一个属性和一个方法：
 
@@ -41,7 +41,7 @@ This is a specialized kit for ADO.NET development, has supported the common data
 
   - `返回值`：连接器（Connector）。
   
-### `Connector`接口
+### Connector接口
 
 该接口定义了6个接口方法：
 
