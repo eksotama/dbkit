@@ -61,15 +61,15 @@ This is a specialized kit for ADO.NET development, has supported the common data
 
   **参数**：
   
-  - `executeType`：表示执行类型，有3个值：`Non`、`Reader`、`Scalar`、`Xml`，即对应执行 ExecuteNonQuery、ExecuteReader、ExecuteScalar、ExecuteXmlReader 方法，[参考文档](https://msdn.microsoft.com/zh-cn/library/system.data.sqlclient.sqlcommand.aspx)。
+  `executeType`：表示执行类型，有3个值：`Non`、`Reader`、`Scalar`、`Xml`，即对应执行 ExecuteNonQuery、ExecuteReader、ExecuteScalar、ExecuteXmlReader 方法，[参考文档](https://msdn.microsoft.com/zh-cn/library/system.data.sqlclient.sqlcommand.aspx)。
 
-  - `cmdText`：表示命令文本，可以是SQL语句或存储过程，但`此方法只支持SQL语句的执行`。
+  `cmdText`：表示命令文本，可以是SQL语句或存储过程，但`此方法只支持SQL语句的执行`。
 
-  - `cmdParams`：表示命令参数对象的可变数组，SQL语句带安全参数时传入。
+  `cmdParams`：表示命令参数对象的可变数组，SQL语句带安全参数时传入。
 
   **返回值**：
 
-  - 执行结果，object类型数据。
+  执行结果，object类型数据。
 
 - **Execute(string executeType, string cmdText, CommandType cmdType, params object[] cmdParams)**
 
@@ -77,11 +77,11 @@ This is a specialized kit for ADO.NET development, has supported the common data
 
   **参数**：
 
-  - `cmdType`：命令类型，有3个值：`CommandType.StoredProcedure`（存储过程）、`CommandType.Text`（SQL语句）、`TableDirect`（数据表）,`此方法支持前两个类型`，[参考文档](https://msdn.microsoft.com/zh-cn/library/system.data.commandtype(VS.80).aspx)。
+  `cmdType`：命令类型，有3个值：`CommandType.StoredProcedure`（存储过程）、`CommandType.Text`（SQL语句）、`TableDirect`（数据表）,`此方法支持前两个类型`，[参考文档](https://msdn.microsoft.com/zh-cn/library/system.data.commandtype(VS.80).aspx)。
 
   **返回值**：
 
-  - 执行结果，object类型数据。
+  执行结果，object类型数据。
 
 ----
 
