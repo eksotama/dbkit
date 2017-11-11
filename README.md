@@ -6,7 +6,7 @@ A helpful database kit for ADO.NET development.
 
 ## 简介 Introduction
 
-这是一个专门为ADO.NET开发的辅助类工具，目前已完成对 **Microsoft SQL Server 数据库**的**增删改查**操作，支持**连接模式**和**断开模式**的操作。基于**抽象工厂模式（Abstract factory pattern）**和**反射（Reflection）**的原理进行封装（encapsulation）。
+这是一个专门为ADO.NET开发的辅助类工具，目前已完成对 **Microsoft SQL Server 数据库**的**增删改查**操作，支持**连接模式**和**断开模式**的操作。基于**抽象工厂模式**（Abstract factory pattern）和**反射**（Reflection）的原理进行封装（encapsulation）。
 
 This is a specialized kit for ADO.NET development, has supported the common data management for **Microsoft SQL Server database** in **connection mode** or **disconnect mode**.And encapsulating it based on **abstract factory pattern** and **reflection** principle.
 
