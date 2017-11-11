@@ -1,7 +1,6 @@
 ﻿using System;                 // must
 using System.Data;            // must
 using System.Data.SqlClient;  // must
-using System.Reflection;      // must 
 using System.Configuration;   // must
 
 namespace DbKit
@@ -16,13 +15,13 @@ namespace DbKit
     {
         // Summary:
         //   连接器类名
-        //   如果在Web.config中设置了数据库类型（DbType）的节点，则可依下列方法从中读取：
+        //   如果在配置文件中设置了数据库类型（DbType）的节点，则可依下列方法从中读取：
         //    
         //   private static string ConnectorClassName
         //   {
         //       set
         //       {
-        //           string className = ConfigurationManager.AppSettings["DbType"]; // 获取Web.config中的数据库类型
+        //           string className = ConfigurationManager.AppSettings["DbType"]; // 获取配置文件中的数据库类型
         //
         //           if (className.Equals("MSSQL", StringComparison.CurrentCultureIgnoreCase)) // 忽略大小写
         //           {
@@ -50,11 +49,12 @@ namespace DbKit
         //
         // Parameters:
         //   dbConnStrName:
-        //     在Web.config中设置的数据库连接字符串名称，可变参数数组
+        //     在配置文件中设置的数据库连接字符串名称，可变参数数组
         //
         public static Connector GetConnector(params string[] dbConnStrName)
         {
-            // return (Connector)Assembly.Load(AssemblyName).CreateInstance(ConnectorClassName); // 利用Assembly反射创建一个连接器
+            // Must using System.Reflection
+            // return (Connector)Assembly.Load(AssemblyName).CreateInstance(ConnectorClassName); // 利用 Assembly 反射创建一个连接器
 
             //
             // 反射实现带参类的创建
@@ -63,7 +63,7 @@ namespace DbKit
 
             object[] parameter = (dbConnStrName.Length == 1) ? dbConnStrName : null; // 设置构造函数参数，最多传入一个参数
 
-            return (Connector)Activator.CreateInstance(classType, parameter); // 利用用Activator反射创建类
+            return (Connector)Activator.CreateInstance(classType, parameter); // 利用用 Activator 反射创建类
         }
 
         // -------------------------------------
@@ -82,7 +82,7 @@ namespace DbKit
         // void SetParameter(...)
 
         // Summary:
-        //   执行SQL语句并返回结果
+        //   执行 SQL 语句并返回结果
         //
         // Parameters:
         //   executeType:
@@ -93,7 +93,7 @@ namespace DbKit
         //     "Xml"    - ExecuteXmlReader
         //
         //   cmdText:
-        //     SQL语句，支持带安全参数
+        //     表示 SQL 语句，支持带安全参数
         //
         //   cmdParams:
         //     安全参数数组
@@ -115,7 +115,7 @@ namespace DbKit
         //     "Xml"    - ExecuteXmlReader
         //
         //   cmdText:
-        //     SQL语句或存储过程名，支持带安全参数
+        //     表示 SQL 语句或存储过程名，支持带安全参数
         //
         //   cmdType:
         //     CommandType类型，设置命令的类型
@@ -133,7 +133,7 @@ namespace DbKit
         //
         // Parameters:
         //   cmdText:
-        //     SQL语句，支持带安全参数
+        //     表示 SQL 语句，支持带安全参数
         //
         //   cmdParams:
         //     安全参数数组
@@ -148,7 +148,7 @@ namespace DbKit
         //
         // Parameters:
         //   cmdText:
-        //     SQL语句或存储过程名，支持带安全参数
+        //     表示 SQL 语句或存储过程名，支持带安全参数
         //
         //   cmdType:
         //     CommandType类型，设置命令的类型
@@ -166,7 +166,7 @@ namespace DbKit
         //
         // Parameters:
         //   cmdText:
-        //     SQL语句或存储过程名，支持带安全参数
+        //     表示 SQL 语句或存储过程名，支持带安全参数
         //
         //   cmdParams:
         //     安全参数数组
@@ -181,10 +181,10 @@ namespace DbKit
         //
         // Parameters:
         //   cmdText:
-        //     SQL语句或存储过程名，支持带安全参数
+        //     表示 SQL语句或存储过程名，支持带安全参数
         //
         //   cmdType:
-        //     CommandType类型，设置命令的类型
+        //     CommandType 类型，设置命令的类型
         //
         //   cmdParams:
         //     安全参数数组
@@ -227,12 +227,12 @@ namespace DbKit
         //
         // Parameters:
         //   dbConnStrName:
-        //     数据库连接字符串名，在web.config中
+        //     数据库连接字符串名，在配置文件中
         private void setDbConnectionString(string dbConnStrName)
         {
             if (dbConnectionString != "")
             {
-                dbConnectionString = ConfigurationManager.ConnectionStrings[dbConnStrName].ConnectionString; // 从Web.config中获取连接字符串
+                dbConnectionString = ConfigurationManager.ConnectionStrings[dbConnStrName].ConnectionString; // 从配置文件中获取连接字符串
             }
         }
 
@@ -274,7 +274,7 @@ namespace DbKit
         //
         // Parameters:
         //   dbConnStrName:
-        //     数据库连接字符串名，在web.config中
+        //     数据库连接字符串名，在配置文件中
         public MsSqlConnector(string dbConnStrName)
         {
             setDbConnectionString(dbConnStrName);
@@ -282,7 +282,7 @@ namespace DbKit
         }
 
         // Summary:
-        //   获取执行SQL语句的结果，私有方法
+        //   获取执行 SQL 语句的结果，私有方法
         //
         // Parameters:
         //   executeType:
@@ -295,18 +295,18 @@ namespace DbKit
         //     安全参数数组
         //
         // Returns:
-        //   返回执行结果，类型为object
+        //   返回执行结果，类型为 object
         private object getResult(string executeType, SqlCommand cmd, params object[] cmdParams)
         {
             object result = null;
 
-            // 设置SqlParameter
+            // 设置 SqlParameter
             if (cmdParams.Length != 0)
             {
                 cmd.Parameters.AddRange((SqlParameter[])cmdParams);
             }
 
-            // 按执行类型执行SQL语句
+            // 按执行类型执行 SQL 语句
             //
             if (executeType.Equals("Non", StringComparison.CurrentCultureIgnoreCase))
             {
@@ -331,7 +331,7 @@ namespace DbKit
                 closeDb();
             }
 
-            // 清除SqlParameter
+            // 清除 SqlParameter
             if (cmd.Parameters.Count != 0)
             {
                 cmd.Parameters.Clear();
