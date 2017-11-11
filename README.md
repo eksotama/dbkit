@@ -43,11 +43,11 @@ This is a specialized kit for ADO.NET development, has supported the common data
 
   **参数**：
 
-  - `dbConStrname`：可变参数数组，表示在 Web.config 中的连接字符串名。
+  `dbConStrname`：可变参数数组，表示在 Web.config 中的连接字符串名。
 
   **返回值**：
   
-  - 连接器（Connector）。
+  连接器（Connector）。
   
 ### Connector接口
 
