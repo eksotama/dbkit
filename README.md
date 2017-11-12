@@ -54,9 +54,7 @@ This is a specialized kit for ADO.NET development, has supported the common data
 
   **举例**：
 
-  ``` c#
-  using DbKit;
-
+  ``` cs
   Connector connector = DbHelper.GetConnector("MyDB");
   ```
 
