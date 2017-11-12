@@ -103,8 +103,8 @@ This is a specialized kit for ADO.NET development, has supported the common data
   // 查询语句
   
   // 获取所有信息的查询
-  string query1           = String.Format("select * frome [user_info] where [username] = '{0}' and [password] = '{1}'", username, password);
-  string query1WithParams = "select * frome [user_info] where [username] = @username and [password] = @password";
+  string query1           = String.Format("select * frome [user_info] where [username] = '{0}' and [password] = '{1}'", username, password),
+         query1WithParams = "select * frome [user_info] where [username] = @username and [password] = @password";
   
   // 获取单值的信息查询
   string query2           = String.Format("select [user_id] frome [user_info] where [username] = '{0}' and [password] = '{1}'", username, password);
