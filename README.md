@@ -90,11 +90,11 @@ This is a specialized kit for ADO.NET development, has supported the common data
 
   // 普通插入操作
   int line1 = (int)connector.Execute("non", sql);
-  connector.Execute(insert)
+  connector.Execute("non", sql)
   
   // 带安全参数的插入操作
   int line2 = (int)connector.Execute("non", sqlWithParams, parameter);
-  connector.Execute(sqlWithParams, parameter)
+  connector.Execute("non", sqlWithParams, parameter)
 
   // 删除、更新操作同上
 
