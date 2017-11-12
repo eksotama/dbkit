@@ -26,6 +26,8 @@ This is a specialized kit for ADO.NET development, has supported the common data
 
 ## 用法 Usage
 
+:bangbang: 注意：以下所有例子均省去命名空间的引入、相关变量的具体定义，实际开发不可省去！  
+
 ### DbHelper 类
 
 该类只定义了一个属性和一个方法，用于获取一个连接对象。
@@ -57,7 +59,7 @@ This is a specialized kit for ADO.NET development, has supported the common data
 
   Connector connector = DbHelper.GetConnector("MyDB");
   ```
-  
+
 ### Connector 接口
 
 该接口定义了6个接口方法，用于对数据库的管理。
@@ -86,26 +88,33 @@ This is a specialized kit for ADO.NET development, has supported the common data
   // 插入
   // 返回值为受影响行数，当不需要获取返回行数时，允许不赋值
 
-  // connector.Execute(insert)
-  int line1 = (int)connector.Execute("non", insert);
+  // 普通插入操作
+  int line1 = (int)connector.Execute("non", sql);
+  connector.Execute(insert)
   
   // 带安全参数的插入操作
-  // connector.Execute(insertWithParams, parameter)
-  int line2 = (int)connector.Execute("non", insertWithParams, parameter);
+  int line2 = (int)connector.Execute("non", sqlWithParams, parameter);
+  connector.Execute(sqlWithParams, parameter)
 
   // 删除、更新操作同上
 
   // 查询
 
   // 查询所有信息
-  SqlDaTaReader reader1 = (SqlDaTaReader)connector.Execute("reader", query1);
-  SqlDaTaReader reader2 = (SqlDaTaReader)connector.Execute("reader", query1WithParams, parameter); // 带安全参数的插入操作
+  SqlDaTaReader reader1 = (SqlDaTaReader)connector.Execute("reader", sql);
+  // 带安全参数的插入操作
+  SqlDaTaReader reader2 = (SqlDaTaReader)connector.Execute("reader", sqlWithParams, parameter);
 
   // 单值的查询
-  int id1 = (int)connector.Execute("scalar", query2);
-  int id2 = (int)connector.Execute("scalar", query2WithParams, parameter);                         // 带安全参数的插入操作
+
+  // 普通查询
+  int id1 = (int)connector.Execute("scalar", sql);
+  
+  // 带安全参数
+  int id2 = (int)connector.Execute("scalar", sqlWithParams, parameter);
 
   ```
+  注意：事例代码，说明大概，具体情况，具体分析！
 
 - **Execute(string executeType, string cmdText, CommandType cmdType, params object[] cmdParams)**
 
