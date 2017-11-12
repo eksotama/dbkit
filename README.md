@@ -6,9 +6,9 @@ A helpful database kit for ADO.NET development.
 
 ## 简介 Introduction
 
-这是一个专门为ADO.NET开发的辅助类工具，目前已完成对 **Microsoft SQL Server 数据库**的**增删改查**操作，支持**连接模式**和**断开模式**的操作。基于**抽象工厂模式**（Abstract factory pattern）和**反射**（Reflection）的原理进行封装（encapsulation）。
+这是一个专门为ADO.NET开发的辅助类工具，目前已完成对 Microsoft SQL Server 数据库的增删改查操作，支持连接模式和断开模式的操作。基于抽象工厂模式（Abstract factory pattern）和反射（Reflection）的原理进行封装（encapsulation）。
 
-This is a specialized kit for ADO.NET development, has supported the common data management for **Microsoft SQL Server database** in **connection mode** or **disconnect mode**.And encapsulating it based on **abstract factory pattern** and **reflection** principle.
+This is a specialized kit for ADO.NET development, has supported the common data management for Microsoft SQL Server database in connection mode or disconnect mode.And encapsulating it based on **abstract factory pattern and reflection principle.
 
 ## 开始 Start
 
@@ -44,11 +44,19 @@ This is a specialized kit for ADO.NET development, has supported the common data
 
   **参数**：
 
-  `dbConStrname`：可变参数数组，表示在 Web.config 中的连接字符串名。
+  `dbConStrname`：可变参数数组，表示在配置文件中的连接字符串名。
 
   **返回值**：
   
   连接器（Connector）。
+
+  **举例**：
+
+  ``` c#
+  using DbKit;
+
+  Connector connector = DbHelper.GetConnector("MyDB");
+  ```
   
 ### Connector 接口
 
@@ -71,6 +79,61 @@ This is a specialized kit for ADO.NET development, has supported the common data
   **返回值**：
 
   执行结果，object类型数据。赋值时需类型转换（拆箱）。
+
+  **举例**：
+
+  ``` c#
+  // 先创建一个连接器
+  Connector connector = DbHelper.GetConnector("MyDB");
+
+  string username = "John";
+  string password = "test";
+
+  // 设置安全参数
+  SqlParameter[] parameter = new SqlParameter[]
+  {
+    new SqlParameter("@username", username),
+    new SqlParameter("@password", password)
+  };
+
+  // 插入语句
+  string insert           = String.Format("insert into [user_info] values('{0}', '{1}')", username, password);
+  string insertWithParams = "insert into [user_iinfo] values(@username, @password)";
+
+  // 查询语句
+  
+  // 获取所有信息的查询
+  string query1           = String.Format("select * frome [user_info] where [username] = '{0}' and [password] = '{1}'", username, password);
+  string query1WithParams = "select * frome [user_info] where [username] = @username and [password] = @password";
+  
+  // 获取单值的信息查询
+  string query2           = String.Format("select [user_id] frome [user_info] where [username] = '{0}' and [password] = '{1}'", username, password);
+  string query2WithParams = "select [user_id] frome [user_info] where [username] = @username and [password] = @password";
+
+
+  // 插入
+  // 返回值为受影响行数，当不需要获取返回行数时，允许不赋值
+
+  // connector.Execute(insert) 
+  int line1 = (int)connector.Execute("non", insert);
+  
+  // 带安全参数的插入操作
+  // connector.Execute(insertWithParams, parameter)
+  int line2 = (int)connector.Execute("non", insertWithParams, parameter);
+
+  // 删除、更新操作同上
+
+  // 查询
+
+  // 查询所有信息
+  SqlDaTaReader reader1 = (SqlDaTaReader)connector.Execute("reader", query1);
+  SqlDaTaReader reader2 = (SqlDaTaReader)connector.Execute("reader", query1WithParams, parameter); // 带安全参数的插入操作
+
+  // 单值的查询
+  int id1 = (int)connector.Execute("scalar", query2);
+  int id2 = (int)connector.Execute("scalar", query2WithParams, parameter);                         // 带安全参数的插入操作
+
+  ```
 
 - **Execute(string executeType, string cmdText, CommandType cmdType, params object[] cmdParams)**
 
