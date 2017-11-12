@@ -8,7 +8,7 @@ A helpful database kit for ADO.NET development.
 
 这是一个专门为ADO.NET开发的辅助类工具，目前已完成对 Microsoft SQL Server 数据库的增删改查操作，支持连接模式和断开模式的操作。基于抽象工厂模式（Abstract factory pattern）和反射（Reflection）的原理进行封装（encapsulation）。
 
-This is a specialized kit for ADO.NET development, has supported the common data management for Microsoft SQL Server database in connection mode or disconnect mode.And encapsulating it based on **abstract factory pattern and reflection principle.
+This is a specialized kit for ADO.NET development, has supported the common data management for Microsoft SQL Server database in connection mode or disconnect mode.And encapsulating it based on abstract factory pattern and reflection principle.
 
 ## 开始 Start
 
@@ -26,7 +26,7 @@ This is a specialized kit for ADO.NET development, has supported the common data
 
 ## 用法 Usage
 
-:bangbang: 注意：以下所有例子均省去命名空间的引入、相关变量的具体定义，实际开发不可省去！  
+:warning: 注意：以下所有例子均省去命名空间的引入、相关变量的具体定义，实际开发不可省去！  
 
 ### DbHelper 类
 
