@@ -82,7 +82,7 @@ This is a specialized kit for ADO.NET development, has supported the common data
 
   **举例**：
 
-  ``` c#
+  ``` cs
   // 先创建一个连接器
   Connector connector = DbHelper.GetConnector("MyDB");
 
@@ -97,8 +97,8 @@ This is a specialized kit for ADO.NET development, has supported the common data
   };
 
   // 插入语句
-  string insert           = String.Format("insert into [user_info] values('{0}', '{1}')", username, password);
-  string insertWithParams = "insert into [user_iinfo] values(@username, @password)";
+  string insert           = String.Format("insert into [user_info] values('{0}', '{1}')", username, password),
+         insertWithParams = "insert into [user_iinfo] values(@username, @password)";
 
   // 查询语句
   
@@ -107,10 +107,9 @@ This is a specialized kit for ADO.NET development, has supported the common data
          query1WithParams = "select * frome [user_info] where [username] = @username and [password] = @password";
   
   // 获取单值的信息查询
-  string query2           = String.Format("select [user_id] frome [user_info] where [username] = '{0}' and [password] = '{1}'", username, password);
-  string query2WithParams = "select [user_id] frome [user_info] where [username] = @username and [password] = @password";
-
-
+  string query2           = String.Format("select [user_id] frome [user_info] where [username] = '{0}' and [password] = '{1}'", username, password),
+         query2WithParams = "select [user_id] frome [user_info] where [username] = @username and [password] = @password";
+  
   // 插入
   // 返回值为受影响行数，当不需要获取返回行数时，允许不赋值
 
