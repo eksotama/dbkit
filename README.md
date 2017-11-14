@@ -189,6 +189,8 @@ This is a specialized kit for ADO.NET development, has supported the common data
 
 - 异步管理数据。
 
+- 异常处理机制。
+
 ----
 
 Loading... :smile:
