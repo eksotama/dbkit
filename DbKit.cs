@@ -38,7 +38,7 @@ namespace DbKit
         //       }
         //   }
         //
-        private static readonly string ConnectorClassName = typeof(MsSqlConnector);
+        private static readonly string ConnectorClassName = typeof(MsSqlConnector).ToString();
 
         // Summary:
         //   获取当前程序集全名，只读
